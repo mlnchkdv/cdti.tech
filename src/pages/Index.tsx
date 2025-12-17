@@ -37,7 +37,7 @@ const Index = () => {
   // Get latest 4 news by highest id
   const latestNews = useMemo(() => {
     return [...newsData.news]
-      .sort((a, b) => parseInt(a.id) - parseInt(b.id))
+      .sort((a, b) => parseInt(b.date) - parseInt(a.date))
       .slice(0, 4);
   }, []);
 
