@@ -11,12 +11,28 @@ const Participants = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filteredLeadership = useMemo(() => {
+    let leaders;
     if (activeFilter === "all" || activeFilter === "leadership") {
-      return participantsData.leadership;
+      leaders = participantsData.leadership;
+    } else {
+      leaders = participantsData.leadership.filter(
+        (leader) => leader.category === activeFilter
+      );
     }
-    return participantsData.leadership.filter(
-      (leader) => leader.category === activeFilter
-    );
+    
+    // Keep first 3 participants (Козюкин, Мещеряков, Мельничук) as is, sort the rest alphabetically
+    if (leaders.length > 3) {
+      const firstThree = leaders.slice(0, 3);
+      const rest = leaders.slice(3);
+      const sortedRest = [...rest].sort((a, b) => {
+        // Extract last name (first word) for sorting
+        const nameA = a.name.split(' ')[0].toLowerCase();
+        const nameB = b.name.split(' ')[0].toLowerCase();
+        return nameA.localeCompare(nameB, 'ru');
+      });
+      return [...firstThree, ...sortedRest];
+    }
+    return leaders;
   }, [activeFilter]);
 
   const filteredCompanies = useMemo(() => {
@@ -113,6 +129,7 @@ const Participants = () => {
                   initials={leader.initials}
                   position={leader.position}
                   company={leader.company}
+                  pk={leader.pk}
                   description={leader.description}
                   photo={leader.photo}
                   telegram={leader.telegram}

@@ -58,7 +58,7 @@ export const CompanyCard = ({
     <div className="member-card bg-card border border-border rounded-xl p-6 transition-all duration-300 flex flex-col h-full">
       <div className="flex items-center gap-4 mb-4">
         <div
-          className={`w-10 h-10 ${colors.bg} ${colors.text} rounded flex items-center justify-center font-semibold text-sm ${colors.border} border`}
+          className={`w-10 h-10 ${colors.bg} ${colors.text} rounded flex items-center justify-center font-semibold text-sm ${colors.border} border aspect-square flex-shrink-0`}
         >
           {initials}
         </div>

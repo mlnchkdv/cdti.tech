@@ -5,6 +5,7 @@ interface LeaderCardProps {
   initials: string;
   position: string;
   company: string;
+  pk?: string;
   description: string;
   photo?: string;
   telegram?: string;
