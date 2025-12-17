@@ -235,7 +235,7 @@
     },
     {
       "id": "c3",
-      "name": "СГУ им. Н. Г. Чернышевского (мехмат)",
+      "name": "СГУ им. Н. Г. Чернышевского (мех-мат)",
       "initials": "SGU",
       "category": "education",
       "categoryLabel": "Образование",
@@ -312,7 +312,7 @@
     },
     {
       "id": "c10",
-      "name": "Партнёры по кибербезопасности (например: Positive Technologies / Kaspersky / Solar)",
+      "name": "Партнёры по кибербезопасности",
       "initials": "SEC",
       "category": "integrator",
       "categoryLabel": "Кибербезопасность",
@@ -323,7 +323,7 @@
     },
     {
       "id": "c11",
-      "name": "Партнёры по импортозамещению ПО (например: ГК «Астра» / «РЕД СОФТ» / «Базальт СПО»)",
+      "name": "Партнёры по импортозамещению ПО",
       "initials": "IMP",
       "category": "development",
       "categoryLabel": "Разработка ПО",
@@ -334,7 +334,7 @@
     },
     {
       "id": "c12",
-      "name": "Партнёрская сеть ERP/CRM и интеграторы (например: 1С-партнёры региона)",
+      "name": "Партнёрская сеть ERP/CRM и интеграторы",
       "initials": "ERP",
       "category": "integrator",
       "categoryLabel": "Интеграторы",
