@@ -63,7 +63,7 @@ const Index = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border bg-background/80 backdrop-blur-sm mb-6">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               <span className="text-xs font-medium text-muted-foreground">
-                Стратегия цифровой трансформации 2026
+                Стратегия цифровой трансформации 2027
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-foreground mb-6 leading-[1.1]">
