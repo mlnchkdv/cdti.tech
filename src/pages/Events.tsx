@@ -9,7 +9,7 @@ import newsData from "@/data/news.json";
 type FilterType = "all" | "events" | "projects" | "startups" | "news";
 
 const filters: { id: FilterType; label: string }[] = [
-  { id: "all", label: "Все события" },
+  { id: "all", label: "Все" },
   { id: "events", label: "Мероприятия" },
   { id: "projects", label: "проекты" },
   { id: "startups", label: "стартапы" },
@@ -89,9 +89,9 @@ const Events = () => {
         break;
     }
 
-    // Sort by id descending (highest id first)
+    // Sort by date descending (newest first)
     return filtered.sort(
-      (a, b) => parseInt(a.id) - parseInt(b.id)
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
   }, [activeFilter]);
 
