@@ -46,7 +46,7 @@ export const Footer = () => {
               </li>
               <li>
                 <Link to="/events" className="hover:text-foreground transition-colors">
-                  Мероприятия
+                  Инициативы
                 </Link>
               </li>
               <li>

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const navigation = [
   { name: "О комитете", href: "/about" },
-  { name: "Мероприятия", href: "/events" },
+  { name: "Инициативы", href: "/events" },
   { name: "Участники", href: "/participants" },
   { name: "Услуги", href: "/services" },
   { name: "Документы", href: "/docs" },

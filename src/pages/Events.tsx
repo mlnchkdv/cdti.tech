@@ -6,13 +6,14 @@ import { EventCard } from "@/components/events/EventCard";
 import { EventModalWithStats } from "@/components/events/EventModalWithStats";
 import newsData from "@/data/news.json";
 
-type FilterType = "all" | "upcoming" | "meeting" | "archive";
+type FilterType = "all" | "events" | "projects" | "startups" | "news";
 
 const filters: { id: FilterType; label: string }[] = [
   { id: "all", label: "Все события" },
-  { id: "upcoming", label: "Предстоящие" },
-  { id: "meeting", label: "Заседания" },
-  { id: "archive", label: "Архив" },
+  { id: "events", label: "Мероприятия" },
+  { id: "projects", label: "проекты" },
+  { id: "startups", label: "стартапы" },
+  { id: "news", label: "новости" },
 ];
 
 const ITEMS_PER_PAGE = 6;
@@ -43,14 +44,46 @@ const Events = () => {
     let filtered = [...newsData.news];
 
     switch (activeFilter) {
-      case "upcoming":
-        filtered = filtered.filter((item) => new Date(item.date) >= today);
+      case "events":
+        // Мероприятия: конференции, заседания, нетворкинг, образовательные мероприятия
+        filtered = filtered.filter((item) => 
+          item.category === "conference" || 
+          item.category === "meeting" || 
+          item.category === "networking" || 
+          item.category === "education"
+        );
         break;
-      case "meeting":
-        filtered = filtered.filter((item) => item.category === "meeting");
+      case "projects":
+        // Проекты: можно определить по категории или другим признакам
+        // Пока используем категории, которые могут относиться к проектам
+        filtered = filtered.filter((item) => 
+          item.category === "visit" || 
+          item.category === "law"
+        );
         break;
-      case "archive":
-        filtered = filtered.filter((item) => new Date(item.date) < today);
+      case "startups":
+        // Стартапы: фильтруем по ключевым словам в заголовке или описании
+        filtered = filtered.filter((item) => 
+          item.title.toLowerCase().includes("старт") ||
+          item.title.toLowerCase().includes("грант") ||
+          item.description.toLowerCase().includes("старт") ||
+          item.description.toLowerCase().includes("грант")
+        );
+        break;
+      case "news":
+        // Новости: остальные категории или все, что не попало в другие фильтры
+        filtered = filtered.filter((item) => 
+          item.category !== "conference" && 
+          item.category !== "meeting" && 
+          item.category !== "networking" && 
+          item.category !== "education" &&
+          item.category !== "visit" &&
+          item.category !== "law" &&
+          !item.title.toLowerCase().includes("старт") &&
+          !item.title.toLowerCase().includes("грант") &&
+          !item.description.toLowerCase().includes("старт") &&
+          !item.description.toLowerCase().includes("грант")
+        );
         break;
       default:
         break;
@@ -102,7 +135,7 @@ const Events = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-8 md:mb-12">
             <div className="animate-fade-in">
               <h1 className="text-3xl md:text-4xl font-medium tracking-tight text-foreground mb-4">
-                Мероприятия и события
+                Инициативы
               </h1>
               <p className="text-base md:text-lg text-muted-foreground max-w-xl tracking-tight leading-relaxed">
                 Следите за повесткой IT-отрасли региона. Заседания, конференции

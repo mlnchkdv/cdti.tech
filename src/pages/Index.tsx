@@ -88,7 +88,7 @@ const Index = () => {
                 className="h-12 px-8 bg-background/90 backdrop-blur-sm border border-border text-muted-foreground font-medium rounded-lg hover:bg-muted transition-all flex items-center justify-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
-                План мероприятий
+                Инициативы
               </Link>
             </div>
           </div>
