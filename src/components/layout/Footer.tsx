@@ -7,15 +7,29 @@ export const Footer = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 bg-foreground rounded flex items-center justify-center text-background">
-                <span className="font-bold tracking-tighter text-[10px]">
-                  ТПП
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-11 h-11 bg-foreground rounded-lg flex items-center justify-center text-background">
+                <img 
+                  src="/images/favicon1.ico" 
+                  className="w-8 h-8 object-contain"
+                  alt="Логотип комитета"
+                />
+              </div>
+              <div className="flex flex-col leading-[0.8rem]">
+                <span className="text-xs font-medium tracking-tight [word-spacing:-px]">
+                  КОМИТЕТ ПО РАЗВИТИЮ
+                </span>
+                <span className="text-xs font-medium tracking-tight">
+                  ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИНОВАЦИЙ
                 </span>
               </div>
-              <span className="font-bold tracking-tight text-sm">
-                КОМИТЕТ ЦТ
-              </span>
+            </div>
+            <div className="mb-4">
+              <img 
+                src="/images/tpp-logo.png" 
+                alt="ТПП Саратовской области"
+                className="h-12 object-contain"
+              />
             </div>
             <p className="text-muted-foreground text-sm max-w-sm">
               Комитет «Цифровых технологий и инноваций» Торгово-промышленной палаты
@@ -38,6 +52,11 @@ export const Footer = () => {
               <li>
                 <Link to="/participants" className="hover:text-foreground transition-colors">
                   Участники
+                </Link>
+              </li>
+              <li>
+                <Link to="/services" className="hover:text-foreground transition-colors">
+                  Услуги
                 </Link>
               </li>
               <li>
