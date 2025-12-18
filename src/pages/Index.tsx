@@ -159,7 +159,7 @@ const Index = () => {
           <div className="space-y-1">
             <p className="text-3xl font-semibold tracking-tight">2000+</p>
             <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-            Промышленных предприятий
+            Промышленных <br/> предприятий
             </p>
           </div>
           <div className="space-y-1">
