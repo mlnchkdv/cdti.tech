@@ -142,7 +142,7 @@ const About = () => {
           </div>
 
           {/* Quote Section */}
-          <div className="bg-foreground rounded-2xl p-8 md:p-12 mb-24 relative overflow-hidden">
+          <div className="bg-gradient-to-r from-foreground to-muted-foreground rounded-2xl p-8 md:p-12 mb-24 relative overflow-hidden ">
             <div className="absolute top-0 right-0 w-64 h-64 bg-muted-foreground/20 rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
             <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
               <div className="flex-1">
