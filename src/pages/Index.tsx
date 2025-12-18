@@ -67,7 +67,7 @@ const Index = () => {
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-foreground mb-6 leading-[1.1]">
-              Инновации и цифровые технологии для предприятий
+              Инновации <br/> и цифровые технологии для предприятий
               <br />
               <span className="text-muted-foreground">в Саратовской области</span>
             </h1>
