@@ -11,9 +11,9 @@ type FilterType = "all" | "events" | "projects" | "startups" | "news";
 const filters: { id: FilterType; label: string }[] = [
   { id: "all", label: "Все" },
   { id: "events", label: "Мероприятия" },
-  { id: "projects", label: "проекты" },
-  { id: "startups", label: "стартапы" },
-  { id: "news", label: "новости" },
+  { id: "projects", label: "Проекты" },
+  { id: "startups", label: "Стартапы" },
+  { id: "news", label: "Новости" },
 ];
 
 const ITEMS_PER_PAGE = 6;
