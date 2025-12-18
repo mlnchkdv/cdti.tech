@@ -26,8 +26,6 @@ const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState<typeof newsData.news[0] | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const today = new Date();
-
   // Open event from URL parameter
   useEffect(() => {
     const eventId = searchParams.get("id");
@@ -43,50 +41,9 @@ const Events = () => {
   const filteredNews = useMemo(() => {
     let filtered = [...newsData.news];
 
-    switch (activeFilter) {
-      case "events":
-        // Мероприятия: конференции, заседания, нетворкинг, образовательные мероприятия
-        filtered = filtered.filter((item) => 
-          item.category === "conference" || 
-          item.category === "meeting" || 
-          item.category === "networking" || 
-          item.category === "education"
-        );
-        break;
-      case "projects":
-        // Проекты: можно определить по категории или другим признакам
-        // Пока используем категории, которые могут относиться к проектам
-        filtered = filtered.filter((item) => 
-          item.category === "visit" || 
-          item.category === "law"
-        );
-        break;
-      case "startups":
-        // Стартапы: фильтруем по ключевым словам в заголовке или описании
-        filtered = filtered.filter((item) => 
-          item.title.toLowerCase().includes("старт") ||
-          item.title.toLowerCase().includes("грант") ||
-          item.description.toLowerCase().includes("старт") ||
-          item.description.toLowerCase().includes("грант")
-        );
-        break;
-      case "news":
-        // Новости: остальные категории или все, что не попало в другие фильтры
-        filtered = filtered.filter((item) => 
-          item.category !== "conference" && 
-          item.category !== "meeting" && 
-          item.category !== "networking" && 
-          item.category !== "education" &&
-          item.category !== "visit" &&
-          item.category !== "law" &&
-          !item.title.toLowerCase().includes("старт") &&
-          !item.title.toLowerCase().includes("грант") &&
-          !item.description.toLowerCase().includes("старт") &&
-          !item.description.toLowerCase().includes("грант")
-        );
-        break;
-      default:
-        break;
+    // 🔥 ГЛАВНОЕ ИЗМЕНЕНИЕ: фильтруем по категории напрямую
+    if (activeFilter !== "all") {
+      filtered = filtered.filter((item) => item.category === activeFilter);
     }
 
     // Sort by date descending (newest first)
