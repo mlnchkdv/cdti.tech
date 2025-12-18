@@ -63,6 +63,12 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      backdropBlur: {
+        glass: "10px",
+      },
+      backgroundColor: {
+        glass: "rgba(255, 255, 255, 0.05)",
+      },
       keyframes: {
         "accordion-down": {
           from: {
