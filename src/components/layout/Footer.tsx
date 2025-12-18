@@ -7,6 +7,17 @@ export const Footer = () => {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
+            
+            <div className="mb-4">
+              <a href="https://saratov.tpprf.ru/ru/" target="_blank">
+                <img 
+                  src="/images/tpp-logo.png" 
+                  alt="ТПП Саратовской области"
+                  className="h-12 object-contain"
+                />
+              </a>
+            </div>
+            
             <div className="flex items-center gap-3 mb-4">
               <div className="w-11 h-11 bg-foreground rounded-lg flex items-center justify-center text-background">
                 <img 
@@ -23,13 +34,6 @@ export const Footer = () => {
                   ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИНОВАЦИЙ
                 </span>
               </div>
-            </div>
-            <div className="mb-4">
-              <img 
-                src="/images/tpp-logo.png" 
-                alt="ТПП Саратовской области"
-                className="h-12 object-contain"
-              />
             </div>
             <p className="text-muted-foreground text-sm max-w-sm">
               Комитет «Цифровых технологий и инноваций» Торгово-промышленной палаты
