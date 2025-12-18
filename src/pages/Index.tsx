@@ -72,8 +72,7 @@ const Index = () => {
               <span className="text-muted-foreground">в Саратовской области</span>
             </h1>
             <p className="text-base md:text-xl text-muted-foreground leading-relaxed max-w-2xl mb-10 tracking-tight">
-            Объединяем IT-компании, промышленность, образование и власть для внедрения сквозных цифровых технологий,
-            повышения производительности и развития технологического предпринимательства.
+            Комитет при ТПП СО — институт развития и единое окно для проектов Индустрии 4.0, экономики данных, искусственного интеллекта и импортозамещения: от диагностики до внедрения и обучения команд.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
@@ -158,13 +157,13 @@ const Index = () => {
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-3xl font-semibold tracking-tight">850+</p>
+            <p className="text-3xl font-semibold tracking-tight">2000+</p>
             <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
-              Выпускников вузов
+            Промышленных предприятий
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-3xl font-semibold tracking-tight">₽2.5Млрд</p>
+            <p className="text-3xl font-semibold tracking-tight">₽2.5 Млрд</p>
             <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
               ИНВЕСТИЦИИ В IT
             </p>
