@@ -35,10 +35,10 @@ export const Footer = () => {
                 </span>
               </div>
             </div>
-            <p className="text-muted-foreground text-sm max-w-sm">
+            {/* <p className="text-muted-foreground text-sm max-w-sm">
               Комитет «Цифровых технологий и инноваций» Торгово-промышленной палаты
               Саратовской области.
-            </p>
+            </p> */}
           </div>
           <div>
             <h4 className="font-medium text-sm mb-4">Навигация</h4>
@@ -132,7 +132,7 @@ export const Footer = () => {
         </div>
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <p className="text-center md:text-left">
-            © 2025 Комитет «Цифровых технологий и инноваций»
+            © 2025 Комитет по развитию цифровых технологий и инноваций,
             <br className="sm:hidden" />
             <span className="hidden sm:inline"> </span>
             ТПП Саратовской области.
