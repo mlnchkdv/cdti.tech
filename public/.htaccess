@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Если запрашивают реально существующий файл или директорию — отдать как есть
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Иначе всегда отдаём index.html, чтобы работал React Router (SPA)
+RewriteRule . /index.html [L]
+
+
