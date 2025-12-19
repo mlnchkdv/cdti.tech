@@ -163,7 +163,7 @@ const Index = () => {
             </p>
           </div>
           <div className="space-y-1">
-            <p className="text-3xl font-semibold tracking-tight">₽2.5 Млрд</p>
+            <p className="text-3xl font-semibold tracking-tight">₽2.5 млрд</p>
             <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
               ИНВЕСТИЦИИ В IT
             </p>
