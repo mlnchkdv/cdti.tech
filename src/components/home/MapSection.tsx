@@ -3,36 +3,21 @@ import { MapPin, Send, Phone, Mail, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
-
 export const MapSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
-      });
 
-      if (error) throw error;
+    const subject = encodeURIComponent(`Сообщение с сайта от ${formData.name}`);
+    const body = encodeURIComponent(
+      `Имя: ${formData.name}\nEmail: ${formData.email}\n\nСообщение:\n${formData.message}`
+    );
 
-      toast.success("Сообщение отправлено! Мы свяжемся с вами в ближайшее время.");
-      setFormData({ name: "", email: "", message: "" });
-    } catch (error: any) {
-      console.error("Error sending message:", error);
-      toast.error("Ошибка отправки. Попробуйте позже.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    window.location.href = `mailto:info@cdti.tech?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -81,14 +66,10 @@ export const MapSection = () => {
                   className="bg-background resize-none"
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  "Отправка..."
-                ) : (
-                  <>
-                    Отправить <Send className="w-4 h-4 ml-2" />
-                  </>
-                )}
+              <Button type="submit" className="w-full">
+                <>
+                  Отправить <Send className="w-4 h-4 ml-2" />
+                </>
               </Button>
             </form>
 
@@ -104,8 +85,8 @@ export const MapSection = () => {
               </div>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Mail className="w-4 h-4 shrink-0" />
-                <a href="mailto:secretariat@sartpp.ru" className="hover:text-foreground transition-colors">
-                  secretariat@sartpp.ru
+                <a href="mailto:info@cdti.tech" className="hover:text-foreground transition-colors">
+                  info@cdti.tech
                 </a>
               </div>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">

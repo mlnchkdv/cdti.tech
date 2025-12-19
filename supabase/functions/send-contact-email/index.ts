@@ -1,6 +1,12 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
 
-const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const SMTP_HOST = Deno.env.get("SMTP_HOST");
+const SMTP_PORT = Number(Deno.env.get("SMTP_PORT") ?? "465");
+const SMTP_USERNAME = Deno.env.get("SMTP_USERNAME");
+const SMTP_PASSWORD = Deno.env.get("SMTP_PASSWORD");
+const SMTP_FROM =
+  Deno.env.get("SMTP_FROM") ?? "ЦДТИ <no-reply@cdti.tech>";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -37,60 +43,59 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Send notification email to the organization
-    const notificationResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "ТПП Саратов <onboarding@resend.dev>",
-        to: ["secretariat@sartpp.ru"],
-        subject: `Новое сообщение от ${name}`,
-        html: `
-          <h2>Новое сообщение с сайта</h2>
-          <p><strong>Имя:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Сообщение:</strong></p>
-          <p>${message.replace(/\n/g, "<br>")}</p>
-        `,
-      }),
+    if (!SMTP_HOST || !SMTP_USERNAME || !SMTP_PASSWORD) {
+      console.error("SMTP configuration is missing");
+      return new Response(
+        JSON.stringify({
+          error: "Email service is not configured on the server",
+        }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const client = new SmtpClient();
+
+    await client.connectTLS({
+      hostname: SMTP_HOST,
+      port: SMTP_PORT,
+      username: SMTP_USERNAME,
+      password: SMTP_PASSWORD,
     });
 
-    if (!notificationResponse.ok) {
-      const errorData = await notificationResponse.json();
-      console.error("Failed to send notification email:", errorData);
-      throw new Error(errorData.message || "Failed to send notification email");
-    }
+    // Send notification email to CDTI
+    await client.send({
+      from: SMTP_FROM,
+      to: "info@cdti.tech",
+      subject: `Новое сообщение с сайта от ${name}`,
+      html: `
+        <h2>Новое сообщение с сайта</h2>
+        <p><strong>Имя:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Сообщение:</strong></p>
+        <p>${message.replace(/\n/g, "<br>")}</p>
+      `,
+    });
 
     console.log("Notification email sent successfully");
 
     // Send confirmation email to the user
-    const confirmationResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: "ТПП Саратов <onboarding@resend.dev>",
-        to: [email],
-        subject: "Мы получили ваше сообщение!",
-        html: `
-          <h2>Спасибо за обращение, ${name}!</h2>
-          <p>Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</p>
-          <p>С уважением,<br>Торгово-промышленная палата Саратовской области</p>
-        `,
-      }),
+    await client.send({
+      from: SMTP_FROM,
+      to: email,
+      subject: "Мы получили ваше сообщение!",
+      html: `
+        <h2>Спасибо за обращение, ${name}!</h2>
+        <p>Мы получили ваше сообщение и свяжемся с вами в ближайшее время.</p>
+        <p>С уважением,<br>Центр развития цифровых технологий и инноваций</p>
+      `,
     });
 
-    if (!confirmationResponse.ok) {
-      const errorData = await confirmationResponse.json();
-      console.error("Failed to send confirmation email:", errorData);
-    } else {
-      console.log("Confirmation email sent successfully");
-    }
+    console.log("Confirmation email sent successfully");
+
+    await client.close();
 
     return new Response(
       JSON.stringify({ success: true }),

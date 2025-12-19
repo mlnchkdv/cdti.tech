@@ -80,11 +80,11 @@ export const Footer = () => {
               </li>
               <li>
                 <a 
-                  href="mailto:secretariat@sartpp.ru"
+                  href="mailto:info@cdti.tech"
                   className="flex items-center gap-2 hover:text-foreground transition-colors"
                 >
                   <Mail className="w-3 h-3" />
-                  secretariat@sartpp.ru
+                  info@cdti.tech
                 </a>
               </li>
               <li>
