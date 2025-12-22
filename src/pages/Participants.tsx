@@ -189,7 +189,7 @@ const Participants = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-              <button className="h-10 px-6 bg-foreground text-background text-sm font-medium rounded-md hover:bg-foreground/90 transition-colors shadow-lg">
+              <button className="h-10 px-6 bg-accent text-accent-foreground text-sm font-medium rounded-md hover:bg-accent/90 transition-colors shadow-lg">
                 Подать заявку
               </button>
               <button className="h-10 px-6 bg-background border border-border text-muted-foreground text-sm font-medium rounded-md hover:bg-card transition-colors">

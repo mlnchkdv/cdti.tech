@@ -66,7 +66,7 @@ export const MapSection = () => {
                   className="bg-background resize-none"
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" variant="accent" className="w-full">
                 <>
                   Отправить <Send className="w-4 h-4 ml-2" />
                 </>

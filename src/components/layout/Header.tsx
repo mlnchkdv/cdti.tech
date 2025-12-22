@@ -72,7 +72,7 @@ export const Header = ({ transparent = false }: HeaderProps) => {
 
         <Link
           to="/join"
-          className="hidden md:flex items-center gap-2 px-4 py-2 bg-foreground text-background text-xs font-medium rounded-md hover:bg-foreground/90 transition-colors shadow-sm"
+          className="hidden md:flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground text-xs font-medium rounded-md hover:bg-accent/90 transition-colors shadow-sm"
         >
           <span>Вступить</span>
           <ArrowRight className="w-3 h-3" />
@@ -116,7 +116,7 @@ export const Header = ({ transparent = false }: HeaderProps) => {
                 window.scrollTo(0, 0);
                 setMobileMenuOpen(false);
               }}
-              className="bg-glass flex items-center gap-2 px-4 py-2 bg-foreground text-background text-xs font-medium rounded-md hover:bg-foreground/90 transition-colors w-fit mt-4"
+              className="bg-glass flex items-center gap-2 px-4 py-2 bg-accent text-accent-foreground text-xs font-medium rounded-md hover:bg-accent/90 transition-colors w-fit mt-4"
             >
               <span>Вступить</span>
               <ArrowRight className="w-3 h-3" />

@@ -77,7 +77,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/join"
-                className="h-12 px-8 bg-foreground text-background font-medium rounded-lg hover:bg-foreground/90 transition-all flex items-center justify-center gap-2 shadow-lg"
+                className="h-12 px-8 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-all flex items-center justify-center gap-2 shadow-lg"
               >
                 Подать заявку
                 <ChevronRight className="w-4 h-4" />
@@ -217,9 +217,9 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="bg-foreground rounded-2xl p-8 text-background shadow-sm flex flex-col justify-between group">
-            <div className="w-10 h-10 bg-background/10 rounded-lg flex items-center justify-center mb-6 border border-background/20">
-              <ShieldCheck className="w-5 h-5 text-background" />
+          <div className="rounded-2xl p-8 text-background shadow-sm flex flex-col justify-between group bg-gradient-to-br from-accent/90 via-[#2563eb] to-[#1d4ed8]">
+            <div className="w-10 h-10 bg-background/10 rounded-lg flex items-center justify-center mb-6 border border-background/20 shadow-sm">
+              <ShieldCheck className="w-5 h-5 text-background drop-shadow" />
             </div>
             <div>
               <h3 className="text-xl font-medium tracking-tight mb-2">
