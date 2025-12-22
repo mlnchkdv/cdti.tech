@@ -121,7 +121,7 @@ export const Footer = () => {
                 </svg>
               </a>
               <a
-                href="mailto:secretariat@sartpp.ru"
+                href="mailto:info@cdti.tech"
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Email"
               >
