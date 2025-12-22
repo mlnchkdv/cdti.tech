@@ -302,7 +302,7 @@ const Index = () => {
                   </span>
                   <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
                 </div>
-                <h3 className="font-medium text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 className="font-medium text-foreground mb-2 line-clamp-2 group-hover:text-accent transition-colors">
                   {news.title}
                 </h3>
                 <p className="text-sm text-muted-foreground line-clamp-2">
