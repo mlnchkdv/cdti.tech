@@ -142,25 +142,25 @@ const About = () => {
           </div>
 
           {/* Quote Section */}
-          <div className="bg-gradient-to-r from-foreground to-muted-foreground rounded-2xl p-8 md:p-12 mb-24 relative overflow-hidden ">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-muted-foreground/20 rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
+          <div className="bg-gradient-to-br from-accent/20 via-white to-accent/10 rounded-2xl p-8 md:p-12 mb-24 relative overflow-hidden border border-border">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
             <div className="relative z-10 flex flex-col md:flex-row gap-8 items-start md:items-center">
               <div className="flex-1">
                 <Quote className="text-muted-foreground w-8 h-8 mb-4 opacity-50" />
-                <p className="text-lg md:text-xl text-background/90 font-medium leading-relaxed tracking-tight mb-6">
+                <p className="text-lg md:text-xl text-foreground font-medium leading-relaxed tracking-tight mb-6">
                   "Мы не просто объединение компаний, мы — интеллектуальный ресурс
                   региона. Наша задача — сделать так, чтобы самые передовые
                   технологии работали на благо экономики Саратовской области."
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-muted-foreground/30 flex items-center justify-center text-xs text-background font-medium border-2 border-muted-foreground/50">
+                  <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-xs text-foreground font-medium border-2 border-border">
                     <img className="rounded-full" src="/public/images/leader-1.png" alt="" />
                   </div>
                   <div>
-                    <div className="text-sm text-background font-medium">
+                    <div className="text-sm text-foreground font-medium">
                       Козюкин Денис Борисович
                     </div>
-                    <div className="text-xs text-background/60">
+                    <div className="text-xs text-muted-foreground">
                       Председатель комитета
                     </div>
                   </div>

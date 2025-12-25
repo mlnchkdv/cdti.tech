@@ -52,7 +52,7 @@ export const EventCard = ({
       className="event-card group cursor-pointer bg-card border border-border rounded-xl overflow-hidden flex flex-col h-full"
       onClick={onClick}
     >
-      <div className="h-40 sm:h-48 bg-muted relative overflow-hidden">
+      <div className="h-40 sm:h-48 bg-gradient-to-br from-accent/20 via-accent/10 to-white relative overflow-hidden">
         {previewImage ? (
           <img
             src={previewImage}
@@ -67,11 +67,11 @@ export const EventCard = ({
           />
         ) : null}
         <div 
-          className={`absolute inset-0 ${previewImage ? 'hidden' : 'flex'} items-center justify-center text-muted-foreground/30 bg-muted`}
+          className={`absolute inset-0 ${previewImage ? 'hidden' : 'flex'} items-center justify-center text-accent/30 bg-gradient-to-br from-accent/20 via-accent/10 to-white`}
         >
           <IconComponent className="w-12 h-12 opacity-20" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/20 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-accent/20 to-transparent pointer-events-none"></div>
         <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-background/90 backdrop-blur-sm border border-border/20 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider text-foreground">
           {categoryLabels[category] || category}
         </div>

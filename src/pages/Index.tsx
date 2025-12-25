@@ -197,7 +197,7 @@ const Index = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-2 bg-card rounded-2xl border border-border p-8 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
+          <div className="md:col-span-2 bg-gradient-to-br from-accent/20 via-white to-accent/10 rounded-2xl border border-border p-8 shadow-sm hover:shadow-md transition-shadow group relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
               <Cpu className="w-32 h-32" />
             </div>
@@ -217,15 +217,15 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl p-8 text-background shadow-sm flex flex-col justify-between group bg-gradient-to-br from-accent/90 via-[#2563eb] to-[#1d4ed8]">
-            <div className="w-10 h-10 bg-background/10 rounded-lg flex items-center justify-center mb-6 border border-background/20 shadow-sm">
-              <ShieldCheck className="w-5 h-5 text-background drop-shadow" />
+          <div className="bg-background rounded-2xl border border-border p-8 shadow-sm flex flex-col justify-between group">
+            <div className="w-10 h-10 bg-muted rounded-lg flex items-center justify-center mb-6 text-foreground border border-border">
+              <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <h3 className="text-xl font-medium tracking-tight mb-2">
                 Кибербезопасность
               </h3>
-              <p className="text-background/70 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 Аудит и защита критической информационной инфраструктуры.
               </p>
             </div>
