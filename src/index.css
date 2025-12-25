@@ -167,6 +167,33 @@
     animation-delay: 0.3s;
   }
 
+  /* CTA Button Animation */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+    }
+  }
+
+  @keyframes arrow-slide {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(4px);
+    }
+  }
+
+  .cta-button-animated {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .cta-button-animated svg {
+    animation: arrow-slide 1.5s ease-in-out infinite;
+  }
+
   /* Card Hover Effects */
   .card-hover {
     @apply transition-all duration-300;
@@ -209,7 +236,8 @@
 
   /* Filter Button Active */
   .filter-active {
-    @apply bg-foreground text-background border-foreground;
+    background: linear-gradient(90deg, #333333, #707070, #b0b6b6);
+    @apply text-background border-[#616161];
   }
 
   /* Filter Button Inactive */

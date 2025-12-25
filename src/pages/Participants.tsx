@@ -73,23 +73,23 @@ const Participants = () => {
         
         {/* Filters */}
         <div className="px-4 md:px-6 max-w-6xl mx-auto mb-8 md:mb-10 overflow-x-auto">
-          <div className="flex items-center gap-2 text-sm min-w-max pb-2">
+          <div className="flex flex-wrap gap-2 overflow-x-auto pb-2 md:pb-0">
             <button
               onClick={() => setActiveFilter("all")}
-              className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all text-xs md:text-sm ${
+              className={`px-3 md:px-4 py-2 rounded-full text-xs font-medium border transition-all whitespace-nowrap ${
                 activeFilter === "all"
-                  ? "bg-foreground text-background shadow-md"
-                  : "bg-background border border-border text-muted-foreground hover:bg-muted"
+                  ? "filter-active"
+                  : "filter-inactive"
               }`}
             >
               Все участники
             </button>
             <button
               onClick={() => setActiveFilter("leadership")}
-              className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all text-xs md:text-sm ${
+              className={`px-3 md:px-4 py-2 rounded-full text-xs font-medium border transition-all whitespace-nowrap ${
                 activeFilter === "leadership"
-                  ? "bg-foreground text-background shadow-md"
-                  : "bg-background border border-border text-muted-foreground hover:bg-muted"
+                  ? "filter-active"
+                  : "filter-inactive"
               }`}
             >
               Члены комитета
@@ -98,10 +98,10 @@ const Participants = () => {
               <button
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
-                className={`px-3 md:px-4 py-2 rounded-full font-medium transition-all text-xs md:text-sm ${
+                className={`px-3 md:px-4 py-2 rounded-full text-xs font-medium border transition-all whitespace-nowrap ${
                   activeFilter === filter.id
-                    ? "bg-foreground text-background shadow-md"
-                    : "bg-background border border-border text-muted-foreground hover:bg-muted"
+                    ? "filter-active"
+                    : "filter-inactive"
                 }`}
               >
                 {filter.label}

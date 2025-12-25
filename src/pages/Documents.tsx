@@ -221,14 +221,14 @@ const Documents = () => {
                     <button
                       key={doc.id}
                       onClick={() => openPreview(doc)}
-                      className="group text-left bg-foreground text-background rounded-xl p-5 shadow-lg hover:shadow-xl transition-all"
+                      className="group text-left bg-gradient-to-br from-accent/30 via-accent/20 to-accent/10 text-foreground rounded-xl p-5 shadow-lg hover:shadow-xl transition-all border border-accent/20"
                     >
-                      <div className="w-8 h-8 rounded-lg bg-background/10 flex items-center justify-center mb-4">
-                        <Scale className="w-4 h-4" />
+                      <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center mb-4 border border-accent/30">
+                        <Scale className="w-4 h-4 text-accent" />
                       </div>
                       <h3 className="font-medium text-lg mb-1">{doc.title}</h3>
-                      <p className="text-background/60 text-xs mb-4">{doc.description}</p>
-                      <span className="text-xs font-medium flex items-center gap-1">
+                      <p className="text-muted-foreground text-xs mb-4">{doc.description}</p>
+                      <span className="text-xs font-medium flex items-center gap-1 text-accent">
                         Открыть <ArrowRight className="w-3 h-3" />
                       </span>
                     </button>

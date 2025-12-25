@@ -37,7 +37,7 @@ const Index = () => {
   // Get latest 4 news by highest id
   const latestNews = useMemo(() => {
     return [...newsData.news]
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 4);
 }, [newsData.news]);
 
@@ -77,7 +77,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/join"
-                className="h-12 px-8 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-all flex items-center justify-center gap-2 shadow-lg"
+                className="cta-button-animated h-12 px-8 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-all flex items-center justify-center gap-2 shadow-lg"
               >
                 Подать заявку
                 <ChevronRight className="w-4 h-4" />
