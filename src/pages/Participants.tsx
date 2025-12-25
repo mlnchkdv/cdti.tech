@@ -135,6 +135,7 @@ const Participants = () => {
                   telegram={leader.telegram}
                   email={leader.email}
                   isChairman={index === 0}
+                  isDeputy={index === 1 || index === 2}
                   onClick={() => handleLeaderClick(leader)}
                 />
               ))}
