@@ -154,7 +154,7 @@ const About = () => {
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-xs text-foreground font-medium border-2 border-border">
-                    <img className="rounded-full" src="/public/images/leader-1.png" alt="" />
+                    <img className="rounded-full" src="/images/leader-1.png" alt="" />
                   </div>
                   <div>
                     <div className="text-sm text-foreground font-medium">
