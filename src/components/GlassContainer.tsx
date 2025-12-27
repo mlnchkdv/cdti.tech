@@ -27,8 +27,8 @@ const glassVariants = {
     borderColor: 'rgba(255, 255, 255, 0.15)',
   },
    sky: {
-    backgroundColor: 'rgba(0, 34, 255, 0.07)',
-    backdropFilter: 'blur(5px)',
+backgroundColor: 'rgba(60, 131, 246, 0.2)',
+    backdropFilter: 'blur(3px)',
     WebkitBackdropFilter: 'blur(2px)',
     borderColor: 'rgba(255, 255, 255, 0.1)',
   },
