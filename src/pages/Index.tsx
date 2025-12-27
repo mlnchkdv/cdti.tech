@@ -157,14 +157,22 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <div className="border-b border-border bg-background/40 backdrop-blur-sm">
+      <div className="bg-background/40 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-3 py-63">
-          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
+          <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest ">
           Саратовская область
           </p>
         </div>
       </div>
-      <section className="border-y border-border bg-background relative z-10">
+      <section className="border-y border-border bg-background relative z-10"
+style={{ 
+    // 🔑 Явно устанавливаем начальные значения
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(5px)',
+    borderColor: 'rgba(0, 0, 0, 0)',
+  }}
+>
         <div className="max-w-6xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="space-y-1">
             <p className="text-3xl font-semibold tracking-tight">120+</p>

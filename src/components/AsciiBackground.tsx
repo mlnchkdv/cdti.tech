@@ -154,7 +154,7 @@ const AsciiBackground = ({
       particleSize: 0.8,
       scatterRange: 1.5,
       breathSpeed: 100,
-      pushForce: 0.115
+      pushForce: 0.515
     };
 
     let particleArray: any[] = [];
