@@ -17,6 +17,8 @@ import { Layout } from "@/components/layout/Layout";
 import { EventModalWithStats } from "@/components/events/EventModalWithStats";
 import { MapSection } from "@/components/home/MapSection";
 import newsData from "@/data/news.json";
+import AsciiBackground from '@/components/AsciiBackground';
+
 
 interface NewsItem {
   id: string;
@@ -55,7 +57,11 @@ const Index = () => {
     <Layout transparentHeader>
       {/* Dot Background */}
       <div className="fixed inset-0 dot-background -z-10"></div>
-
+<AsciiBackground 
+  offsetTop={0}
+  height={1200}
+  offsetLeft={290}        // 🖥️ На десктопе смещение вправо
+/>
       {/* Hero Section */}
       <section className="relative z-10 pt-32 pb-20 px-6 max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -92,14 +98,24 @@ const Index = () => {
             </div>
           </div>
 
-
+          
           {/* Featured Event Card */}
           <div
-            className="lg:col-span-5 w-full animate-fade-in order-1 lg:order-2"
+            className="lg:col-span-5 w-full order-1 lg:order-2"
             style={{ animationDelay: "0.1s" }}
           >
-            <div className="glass-card rounded-2xl p-6 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1">
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+            
+            <div 
+  className="bg-white/20 backdrop-blur-lg border border-white/10 rounded-2xl p-6 relative overflow-hidden group transition-all duration-300 hover:-translate-y-1"
+  style={{ 
+    // 🔑 Явно устанавливаем начальные значения
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(5px)',
+    borderColor: 'rgba(255, 255, 255, 0.1)',
+  }}
+>
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent/40 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-4">
@@ -141,7 +157,7 @@ const Index = () => {
       </section>
 
       {/* Stats Section */}
-      <div className="border-b border-border bg-background">
+      <div className="border-b border-border bg-background/40 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-3 py-63">
           <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
           Саратовская область
@@ -324,6 +340,7 @@ const Index = () => {
         event={selectedNews}
         eventUrl={selectedNews ? `${window.location.origin}/events?id=${selectedNews.id}` : undefined}
       />
+
     </Layout>
   );
 };
