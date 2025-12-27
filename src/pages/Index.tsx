@@ -60,7 +60,7 @@ const Index = () => {
 <AsciiBackground 
   offsetTop={0}
   height={1200}
-  offsetLeft={290}        // 🖥️ На десктопе смещение вправо
+  offsetLeft={290}
 />
       {/* Hero Section */}
       <section className="relative z-10 pt-32 pb-20 px-6 max-w-6xl mx-auto">

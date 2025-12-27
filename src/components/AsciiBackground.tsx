@@ -4,12 +4,16 @@ interface AsciiBackgroundProps {
   offsetTop?: number;
   height?: number;
   offsetLeft?: number;
+  scatterRange?: number;
+  isFixed?: boolean;
 }
 
 const AsciiBackground = ({ 
   offsetTop = 0, 
   height = 800,
-  offsetLeft = 0
+  offsetLeft = 0,
+  scatterRange= 1.5,
+isFixed = false,
 }: AsciiBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -152,7 +156,7 @@ const AsciiBackground = ({
       mouseRadius: 190,
       particleColor: '#00063eff',
       particleSize: 0.8,
-      scatterRange: 1.5,
+      scatterRange: scatterRange,
       breathSpeed: 100,
       pushForce: 0.515
     };
@@ -336,13 +340,14 @@ const AsciiBackground = ({
     <div
       ref={containerRef}
       style={{
-        position: 'absolute',
-        top: 0,
-        left: `${offsetLeft}px`,
-        width: '100%',
-        height: `${height}px`,
-        pointerEvents: 'auto',
-        zIndex: 5,
+        position: isFixed ? 'fixed' : 'absolute',  // 🔑 Условное позиционирование
+        top: isFixed ? 0 : offsetTop,
+        left: isFixed ? 0 : offsetLeft,
+        width: isFixed ? '100vw' : '100%',
+        height: isFixed ? '100vh' : `${height}px`,
+        pointerEvents: 'none',
+        zIndex: isFixed ? -1 : 5,
+        overflow: isFixed ? 'hidden' : 'visible',
       }}
     >
       <canvas
@@ -351,6 +356,7 @@ const AsciiBackground = ({
           display: 'block',
           width: '100%',
           height: '100%',
+          pointerEvents: 'none',
         }}
       />
     </div>

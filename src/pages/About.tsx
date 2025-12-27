@@ -10,6 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import AsciiBackground from '@/components/AsciiBackground';
 
 const About = () => {
   return (
@@ -31,8 +32,9 @@ const About = () => {
             </p>
           </div>
         </header>
-
+        
         {/* Key Metrics */}
+        
         <section className="hidden border-b border-border bg-background/50 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
