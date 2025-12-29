@@ -88,7 +88,7 @@ const Events = () => {
       <div className="dot-background min-h-screen pb-20 relative">
         
         {/* 🔑 ASCII Background с переопределением позиции на fixed */}
-        <div style={{ 
+        {/* <div style={{ 
           position: 'fixed', 
           top: 0, 
           left: 0, 
@@ -104,7 +104,7 @@ const Events = () => {
             offsetLeft={-40}
             scatterRange={90.5}
           />
-        </div>
+        </div> */}
 
         {/* Весь контент с position: relative чтобы быть поверх ASCII */}
         <div className="relative z-10">
