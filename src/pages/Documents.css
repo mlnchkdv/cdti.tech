@@ -1,0 +1,209 @@
+/* Documents.css - Range Slider с тонкой красивой полоской */
+
+.card-conteiner {
+  cursor: default;
+  --color-primary: #3c83f6;
+  --color-headline: #3f4656;
+  --color-text: #99a3ba;
+}
+
+.card-content {
+  width: 100%;
+  padding: 24px 20px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.card-content .card-title {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  color: var(--color-headline);
+}
+
+.card-content .card-title span {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.card-content .values div {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.card-content .values {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 15px;
+  letter-spacing: -0.5px;
+}
+
+.card-content .values > div:first-child {
+  margin-right: 6px;
+}
+
+.card-content .values > div:last-child {
+  margin-left: 6px;
+}
+
+.card-content .slider {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 0.6em;
+  color: var(--color-text);
+  position: relative;
+}
+
+/* Range Slider Container */
+.rangeslider {
+  font-family: inherit;
+  font-size: 14px;
+  position: relative;
+  height: 5px;
+  width: 100%;
+  display: inline-block;
+  margin-top: 0;
+  padding: 0;
+}
+
+
+
+.rangeslider input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.rangeslider input::-webkit-slider-thumb {
+  pointer-events: all;
+}
+
+.rangeslider input::-moz-range-thumb {
+  pointer-events: all;
+}
+
+/* Range Slider Styles - WebKit (Chrome, Safari) */
+.input-ranges[type="range"] {
+  width: 100%;
+  height: 3px;
+  overflow: visible;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: none;
+}
+
+/* Скрыть стандартный трек */
+.input-ranges[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 3px;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+}
+
+.input-ranges[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  margin-top: -6.5px;
+  background: #ffffff;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(60, 131, 246, 0.25);
+}
+
+.input-ranges[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--color-primary);
+  box-shadow: 0 4px 10px rgba(60, 131, 246, 0.4);
+  transform: scale(1.1);
+}
+
+.input-ranges[type="range"]::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  box-shadow: 0 4px 12px rgba(60, 131, 246, 0.45);
+}
+
+.input-ranges[type="range"]:nth-child(1)::-webkit-slider-thumb {
+  z-index: 7;
+}
+
+/* Range Slider Styles - Firefox */
+.input-ranges[type="range"]::-moz-range-track {
+  background: transparent;
+  border: none;
+}
+
+.input-ranges[type="range"]::-moz-range-progress {
+  background: transparent;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.input-ranges[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  background: #ffffff;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(60, 131, 246, 0.25);
+  margin-top: -6.5px;
+}
+
+.input-ranges[type="range"]::-moz-range-thumb:hover {
+  background: var(--color-primary);
+  box-shadow: 0 4px 10px rgba(60, 131, 246, 0.4);
+  transform: scale(1.1);
+}
+
+.input-ranges[type="range"]::-moz-range-thumb:active {
+  cursor: grabbing;
+  box-shadow: 0 4px 12px rgba(60, 131, 246, 0.45);
+}
+
+.input-ranges[type="range"]::-moz-range-border {
+  border: none;
+}
+
+.input-ranges[type="range"]:nth-child(1)::-moz-range-thumb {
+  z-index: 7;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .card-content {
+    padding: 20px 16px;
+  }
+
+  .card-content .card-title {
+    font-size: 1px;
+    margin-bottom: 12px;
+  }
+
+  .card-content .values {
+    font-size: 14px;
+  }
+
+  .rangeslider {
+    height: 6px;
+  }
+
+  .input-ranges[type="range"] {
+    height: 2px;
+  }
+}

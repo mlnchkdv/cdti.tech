@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { DocumentPreview } from "@/components/documents/DocumentPreview";
 import {
@@ -17,6 +17,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import documentsData from "@/data/documents.json";
+import "./Documents.css";
 
 const formatIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   pdf: FileText,
@@ -32,12 +33,15 @@ const formatColors: Record<string, string> = {
 
 const Documents = () => {
   const [activeTab, setActiveTab] = useState("all");
-  const [yearFilters, setYearFilters] = useState<string[]>([]);
+  const [yearRange, setYearRange] = useState([2000, 2026]);
   const [formatFilters, setFormatFilters] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const [previewDoc, setPreviewDoc] = useState<typeof documentsData.documents[0] | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  const minYear = 2000;
+  const maxYear = 2026;
 
   const tabs = [
     { id: "all", label: "Все документы" },
@@ -47,6 +51,37 @@ const Documents = () => {
     { id: "archive", label: "Архив" },
   ];
 
+  // Обновление визуализации слайдера
+  useEffect(() => {
+    const updateSliderBackground = () => {
+      const sliders = document.querySelectorAll('.input-ranges');
+      if (sliders.length === 2) {
+        const slider1 = sliders[0] as HTMLInputElement;
+        const slider2 = sliders[1] as HTMLInputElement;
+        const min = 2000;
+        const max = 2026;
+        
+        const val1 = ((parseInt(slider1.value) - min) / (max - min)) * 100;
+        const val2 = ((parseInt(slider2.value) - min) / (max - min)) * 100;
+        
+        slider1.style.background = `linear-gradient(to right, #d1d5db 0%, #d1d5db ${val1}%, #3c83f6 ${val1}%, #3c83f6 ${val2}%, #d1d5db ${val2}%, #d1d5db 100%)`;
+        slider2.style.background = 'transparent';
+      }
+    };
+
+    updateSliderBackground();
+    const inputs = document.querySelectorAll('.input-ranges');
+    inputs.forEach(input => {
+      input.addEventListener('input', updateSliderBackground);
+    });
+
+    return () => {
+      inputs.forEach(input => {
+        input.removeEventListener('input', updateSliderBackground);
+      });
+    };
+  }, []);
+
   const filteredDocuments = useMemo(() => {
     let filtered = [...documentsData.documents];
 
@@ -54,9 +89,10 @@ const Documents = () => {
       filtered = filtered.filter((doc) => doc.category === activeTab);
     }
 
-    if (yearFilters.length > 0) {
-      filtered = filtered.filter((doc) => yearFilters.includes(doc.year));
-    }
+    filtered = filtered.filter((doc) => {
+      const docYear = parseInt(doc.year);
+      return docYear >= yearRange[0] && docYear <= yearRange[1];
+    });
 
     if (formatFilters.length > 0) {
       filtered = filtered.filter((doc) => formatFilters.includes(doc.format));
@@ -72,7 +108,7 @@ const Documents = () => {
     }
 
     return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  }, [activeTab, yearFilters, formatFilters, searchQuery]);
+  }, [activeTab, yearRange, formatFilters, searchQuery]);
 
   const featuredDocs = documentsData.documents.filter((doc) => doc.featured);
 
@@ -81,7 +117,7 @@ const Documents = () => {
   };
 
   const resetFilters = () => {
-    setYearFilters([]);
+    setYearRange([minYear, maxYear]);
     setFormatFilters([]);
     setSearchQuery("");
     setActiveTab("all");
@@ -166,29 +202,70 @@ const Documents = () => {
         {/* Main */}
         <main className="px-4 md:px-6 max-w-6xl mx-auto w-full flex-1 flex flex-col md:flex-row gap-8 md:gap-12">
           {/* Sidebar */}
-          <aside className="w-full md:w-56 space-y-6 md:space-y-8">
-            <div>
-              <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3 md:mb-4">Год</h3>
-              <div className="flex flex-wrap md:flex-col gap-2 md:gap-3">
-                {documentsData.years.map((year) => (
-                  <label key={year} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">
+          <aside className="w-full md:w-40 space-y-6 md:space-y-8">
+            {/* Year Range Slider */}
+            <div className="card-conteiner">
+              <div className="card-content">
+                <h3 className="card-title">
+                  <span>ГОД</span>
+                </h3>
+
+                <div className="values">
+                  <div>{yearRange[0]}</div>
+                  <div>—</div>
+                  <div>{yearRange[1]}</div>
+                </div>
+
+                <div className="slider">
+                  <div className="rangeslider">
                     <input
-                      type="checkbox"
-                      checked={yearFilters.includes(year)}
-                      onChange={() => toggleFilter(year, yearFilters, setYearFilters)}
-                      className="w-4 h-4 rounded border-border"
+                      type="range"
+                      className="input-ranges"
+                      min={minYear}
+                      max={maxYear}
+                      value={yearRange[0]}
+                      onChange={(e) => {
+                        const newMin = Math.min(parseInt(e.target.value), yearRange[1]);
+                        setYearRange([newMin, yearRange[1]]);
+                      }}
                     />
-                    <span>{year}</span>
-                  </label>
-                ))}
+                    <input
+                      type="range"
+                      className="input-ranges"
+                      min={minYear}
+                      max={maxYear}
+                      value={yearRange[1]}
+                      onChange={(e) => {
+                        const newMax = Math.max(parseInt(e.target.value), yearRange[0]);
+                        setYearRange([yearRange[0], newMax]);
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <div style={{ marginTop: "15px", paddingTop: "2px", borderTop: "1px solid #e5e7eb" }}>
+                  <button
+                    onClick={() => setYearRange([minYear, maxYear])}
+                    className="w-full text-sm font-medium text-muted-foreground hover:text-foreground flex items-center justify-center gap-2 py-1 rounded-lg hover:bg-muted transition-colors"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                    Сбросить
+                  </button>
+                </div>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3 md:mb-4">Формат</h3>
+            {/* Format Filter */}
+            {/* <div>
+              <h3 className="text-xs font-semibold text-foreground uppercase tracking-wider mb-3 md:mb-4">
+                Формат
+              </h3>
               <div className="flex flex-wrap md:flex-col gap-2 md:gap-3">
                 {documentsData.formats.map((format) => (
-                  <label key={format} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer">
+                  <label
+                    key={format}
+                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground cursor-pointer"
+                  >
                     <input
                       type="checkbox"
                       checked={formatFilters.includes(format)}
@@ -199,12 +276,7 @@ const Documents = () => {
                   </label>
                 ))}
               </div>
-            </div>
-
-            <button onClick={resetFilters} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1">
-              <RotateCcw className="w-3 h-3" />
-              Сбросить фильтры
-            </button>
+            </div> */}
           </aside>
 
           {/* Documents */}
@@ -247,17 +319,31 @@ const Documents = () => {
                 {filteredDocuments.map((doc) => {
                   const Icon = formatIcons[doc.format] || FileText;
                   return (
-                    <div key={doc.id} className="bg-card border border-border rounded-xl p-4 hover:shadow-md transition-all">
+                    <div
+                      key={doc.id}
+                      className="bg-card border border-border rounded-xl p-4 hover:shadow-md transition-all"
+                    >
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${formatColors[doc.format]}`}>
                         <Icon className="w-5 h-5" />
                       </div>
-                      <h4 className="font-medium text-sm text-foreground mb-1 line-clamp-2">{doc.title}</h4>
-                      <p className="text-xs text-muted-foreground mb-3">{doc.format.toUpperCase()}, {doc.size}</p>
+                      <h4 className="font-medium text-sm text-foreground mb-1 line-clamp-2">
+                        {doc.title}
+                      </h4>
+                      <p className="text-xs text-muted-foreground mb-3">
+                        {doc.format.toUpperCase()}, {doc.size}
+                      </p>
                       <div className="flex gap-2">
-                        <button onClick={() => openPreview(doc)} className="flex-1 h-8 bg-muted text-xs font-medium rounded flex items-center justify-center gap-1 hover:bg-muted/80">
+                        <button
+                          onClick={() => openPreview(doc)}
+                          className="flex-1 h-8 bg-muted text-xs font-medium rounded flex items-center justify-center gap-1 hover:bg-muted/80"
+                        >
                           <Eye className="w-3 h-3" /> Просмотр
                         </button>
-                        <a href={doc.url} download className="h-8 w-8 bg-muted rounded flex items-center justify-center hover:bg-muted/80">
+                        <a
+                          href={doc.url}
+                          download
+                          className="h-8 w-8 bg-muted rounded flex items-center justify-center hover:bg-muted/80"
+                        >
                           <Download className="w-3 h-3" />
                         </a>
                       </div>
@@ -277,19 +363,40 @@ const Documents = () => {
                       {docs.map((doc, i) => {
                         const Icon = formatIcons[doc.format] || FileText;
                         return (
-                          <div key={doc.id} className={`group flex flex-col sm:flex-row sm:items-center p-4 hover:bg-muted transition-colors cursor-pointer gap-3 ${i < docs.length - 1 ? "border-b border-border" : ""}`} onClick={() => openPreview(doc)}>
+                          <div
+                            key={doc.id}
+                            className={`group flex flex-col sm:flex-row sm:items-center p-4 hover:bg-muted transition-colors cursor-pointer gap-3 ${
+                              i < docs.length - 1 ? "border-b border-border" : ""
+                            }`}
+                            onClick={() => openPreview(doc)}
+                          >
                             <div className="flex items-center gap-4 flex-1">
-                              <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${formatColors[doc.format]}`}>
+                              <div
+                                className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                                  formatColors[doc.format]
+                                }`}
+                              >
                                 <Icon className="w-5 h-5" />
                               </div>
                               <div>
-                                <h4 className="text-sm font-medium text-foreground group-hover:text-accent">{doc.title}</h4>
-                                <p className="text-xs text-muted-foreground mt-0.5">{doc.description}</p>
+                                <h4 className="text-sm font-medium text-foreground group-hover:text-accent">
+                                  {doc.title}
+                                </h4>
+                                <p className="text-xs text-muted-foreground mt-0.5">
+                                  {doc.description}
+                                </p>
                               </div>
                             </div>
                             <div className="flex items-center justify-between sm:justify-end gap-4">
-                              <span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">{doc.format.toUpperCase()}, {doc.size}</span>
-                              <a href={doc.url} download onClick={(e) => e.stopPropagation()} className="text-muted-foreground hover:text-foreground">
+                              <span className="text-xs text-muted-foreground font-mono bg-muted px-2 py-1 rounded">
+                                {doc.format.toUpperCase()}, {doc.size}
+                              </span>
+                              <a
+                                href={doc.url}
+                                download
+                                onClick={(e) => e.stopPropagation()}
+                                className="text-muted-foreground hover:text-foreground"
+                              >
                                 <Download className="w-5 h-5" />
                               </a>
                             </div>
@@ -304,7 +411,11 @@ const Documents = () => {
           </div>
         </main>
 
-        <DocumentPreview isOpen={isPreviewOpen} onClose={() => setIsPreviewOpen(false)} document={previewDoc} />
+        <DocumentPreview
+          isOpen={isPreviewOpen}
+          onClose={() => setIsPreviewOpen(false)}
+          document={previewDoc}
+        />
       </div>
     </Layout>
   );
