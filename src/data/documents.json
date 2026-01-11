@@ -7,9 +7,9 @@
       "date": "2025-05-13",
       "category": "all",
       "year": "2025",
-      "format": "docx",
+      "format": "pdf",
       "size": "25 KB",
-      "url": "/documents/file_1.docx",
+      "url": "/documents/file_1.pdf",
       "featured": true
     },
     {
@@ -34,6 +34,18 @@
       "format": "pdf",
       "size": "266 KB",
       "url": "/documents/file_3.pdf",
+      "featured": false
+    },
+     {
+      "id": "4",
+      "title": "Закон Саратовской области о развитии креативных индустрий",
+      "description": "Закон Саратовской области, регулирующий развитие креативных (творческих) индустрий в регионе",
+      "date": "2025-08-27",
+      "category": "all",
+      "year": "2025",
+      "format": "pdf",
+      "size": "360 KB",
+      "url": "/documents/file_4.pdf",
       "featured": false
     }
   ],

@@ -137,7 +137,7 @@ export const Footer = () => {
 
           <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p className="text-center md:text-left">
-              © 2025 Комитет по развитию цифровых технологий и инноваций,
+              © 2026 Комитет по развитию цифровых технологий и инноваций,
               <br className="sm:hidden" />
               <span className="hidden sm:inline"> </span>
               ТПП Саратовской области.
