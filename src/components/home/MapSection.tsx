@@ -32,9 +32,9 @@ export const MapSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
           {/* Contact Form */}
-          <div className="bg-card rounded-2xl border border-border p-6 md:p-8 order-2 lg:order-1">
+          {/* <div className="bg-card rounded-2xl border border-border p-6 md:p-8 order-2 lg:order-1">
             <h3 className="text-lg font-medium mb-6">Обратная связь</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -73,7 +73,7 @@ export const MapSection = () => {
               </Button>
             </form>
 
-            {/* Contact Info */}
+            Contact Info
             <div className="mt-8 pt-6 border-t border-border space-y-3">
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 shrink-0" />
@@ -94,10 +94,10 @@ export const MapSection = () => {
                 <span>Пн–Пт: 9:00 – 18:00</span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Map */}
-          <div className="bg-card rounded-2xl border border-border overflow-hidden order-1 lg:order-2 h-[300px] lg:h-auto min-h-[400px]">
+          <div className="bg-card rounded-2xl border border-border overflow-hidden h-[300px] lg:h-[600px] min-h-[400px]">
             <iframe
               src="https://yandex.ru/map-widget/v1/?ll=46.037859%2C51.531926&z=17&pt=46.037859%2C51.531926%2Cpm2rdm"
               width="100%"
