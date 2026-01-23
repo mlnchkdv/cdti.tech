@@ -37,7 +37,7 @@ export const Footer = () => {
                     КОМИТЕТ ПО РАЗВИТИЮ
                   </span>
                   <span className="text-xs font-medium tracking-tight">
-                    ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИНОВАЦИЙ
+                    ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИННОВАЦИЙ
                   </span>
                 </div>
               </div>

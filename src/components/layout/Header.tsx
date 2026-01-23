@@ -45,7 +45,7 @@ export const Header = ({ transparent = false }: HeaderProps) => {
               КОМИТЕТ ПО РАЗВИТИЮ
             </span>
             <span className="text-xs font-medium tracking-tight">
-              ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИНОВАЦИЙ
+              ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИННОВАЦИЙ
             </span>
             <span className="text-[10px] text-muted-foreground tracking-tight mt-0.5">
               ТПП САРАТОВСКАЯ ОБЛАСТЬ
