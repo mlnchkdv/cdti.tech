@@ -10,7 +10,9 @@ import Participants from "./pages/Participants";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Documents from "./pages/Documents";
+import Policy from "./pages/Policy";
 import NotFound from "./pages/NotFound";
+
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,7 @@ const App = () => (
           <Route path="/services" element={<Services />} />
           <Route path="/docs" element={<Documents />} />
           <Route path="/join" element={<Index />} />
+          <Route path="/policy" element={<Policy/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

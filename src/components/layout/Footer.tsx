@@ -146,11 +146,8 @@ export const Footer = () => {
               Все права защищены.
             </p>
             <div className="flex flex-wrap justify-center gap-4 md:gap-6">
-              <a href="#" className="hover:text-foreground transition-colors">
-                Политика конфиденциальности
-              </a>
-              <a href="#" className="hover:text-foreground transition-colors">
-                Условия использования
+              <a href="/policy" className="hover:text-foreground transition-colors">
+                Политика конфиденциальности и обработки персональных данных 
               </a>
             </div>
           </div>
