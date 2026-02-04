@@ -12,6 +12,7 @@ import Services from "./pages/Services";
 import Documents from "./pages/Documents";
 import Policy from "./pages/Policy";
 import NotFound from "./pages/NotFound";
+import PilotProjectsPage from "./pages/PilotProjectsPage";
 
 
 const queryClient = new QueryClient();
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/join" element={<Index />} />
           <Route path="/policy" element={<Policy/>} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/PilotProjectsPage" element={<PilotProjectsPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
