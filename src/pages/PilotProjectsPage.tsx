@@ -449,7 +449,7 @@ export default function PilotProjectsPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.2em] text-sky-400">
-              Форум • Экосистема пилотов
+              Форум • Экосистема пилотов • Форум
             </p>
             <h1 className="text-3xl font-bold tracking-tight text-slate-50 md:text-4xl lg:text-5xl">
               Пилотные проекты: от запроса к внедрению
