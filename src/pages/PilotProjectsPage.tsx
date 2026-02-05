@@ -81,8 +81,7 @@ export interface LeadFormState {
 
 // ========== MOCK ДАННЫЕ ==========
 
-import type { ProjectCard } from './types';
-import projectsData from './projects-data.json';
+import projectsData from '@/data/projects-data.json';
 
 // Экспортируем типизированные mock данные
 export const MOCK_PROJECTS: ProjectCard[] = projectsData as ProjectCard[];
