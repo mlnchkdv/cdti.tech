@@ -4,25 +4,24 @@ import React, { useMemo, useState, useEffect } from "react";
 
 export type ProjectType = "request" | "solution" | "pilot";
 
-export type ProjectStatus =
-  | "draft"
-  | "published"
-  | "shortlist"
-  | "pitch"
-  | "followup"
-  | "poc"
-  | "live"
-  | "scale"
-  | "done"
+export type ProjectStatus = 
+  | "draft" 
+  | "published" 
+  | "shortlist" 
+  | "pitch" 
+  | "followup" 
+  | "poc" 
+  | "live" 
+  | "scale" 
+  | "done" 
   | "on_hold";
 
-export type DataRequirement =
-  | "nda"
-  | "on_prem"
-  | "cloud_ok"
-  | "anonymized_only"
-  | "pdn"
-  | "cii";
+export type DataRequirement = 
+  | "on_prem" 
+  | "cloud_ok" 
+  | "pdn" 
+  | "nda" 
+  | "anonymized_only";
 
 export interface ProjectCard {
   id: string;
@@ -45,7 +44,13 @@ export interface ProjectCard {
     pitchVideoUrl?: string;
     websiteUrl?: string;
   };
-  owner?: { name?: string; role?: string; email?: string; phone?: string; public?: boolean };
+  owner?: { 
+    name?: string; 
+    role?: string; 
+    email?: string; 
+    phone?: string; 
+    public?: boolean 
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -64,7 +69,7 @@ export type LeadFormType =
   | "b2b_slot"
   | "submit_project";
 
-interface LeadFormState {
+export interface LeadFormState {
   fullName: string;
   org: string;
   role: "customer" | "mtk" | "university" | "investor" | "other";
@@ -76,134 +81,20 @@ interface LeadFormState {
 
 // ========== MOCK ДАННЫЕ ==========
 
-const MOCK_PROJECTS: ProjectCard[] = [
-  {
-    id: "p1",
-    type: "request",
-    title: "Система мониторинга энергопотребления на умном предприятии",
-    oneLiner: "Запрос на IoT-решение для реал-тайм анализа энергопотребления",
-    description:
-      "Крупное производственное предприятие ищет решение для интеграции сотен датчиков энергопотребления с центральным хранилищем данных и BI-дашбордом. Целевой KPI: снизить потери энергии на 15% в течение 6 месяцев пилота.",
-    categories: ["iiot", "automation"],
-    industries: ["manufacturing", "energy"],
-    tags: ["IoT", "Big Data", "ML"],
-    status: "published",
-    readinessScore: 75,
-    impactScore: 85,
-    pilotDurationWeeks: 12,
-    budgetRange: { min: 500000, max: 2000000, currency: "RUB" },
-    dataRequirements: ["on_prem", "anonymized_only"],
-    assets: { websiteUrl: "https://example.com" },
-    owner: { name: "Иван Петров", role: "CTO", email: "ivan@manufact.ru", public: true },
-    createdAt: "2025-12-15T10:00:00Z",
-    updatedAt: "2026-01-20T14:30:00Z",
-  },
-  {
-    id: "p2",
-    type: "solution",
-    title: "Платформа компьютерного зрения для контроля качества",
-    oneLiner: "AI-решение для автоматизации визуального контроля на производстве",
-    description:
-      "Наша команда разработала гибридную платформу CV для реал-тайм обнаружения дефектов на конвейере. Интегрируется с существующими системами, требует минимальной переподготовки персонала. Доказанный эффект: сокращение брака на 40%, скорость обработки видео — 60 кадров/сек.",
-    categories: ["computer_vision", "ai_agents"],
-    industries: ["manufacturing", "construction"],
-    tags: ["CV", "Deep Learning", "Real-time"],
-    status: "published",
-    readinessScore: 90,
-    impactScore: 80,
-    pilotDurationWeeks: 8,
-    budgetRange: { min: 1000000, max: 5000000, currency: "RUB" },
-    dataRequirements: ["cloud_ok", "nda"],
-    assets: { pdfUrl: "/docs/cv-solution.pdf", websiteUrl: "https://cv-startup.com" },
-    owner: { name: "Мария Сидорова", role: "Product Lead", email: "maria@cvtech.ru", public: true },
-    createdAt: "2025-11-10T08:15:00Z",
-    updatedAt: "2026-01-25T16:45:00Z",
-  },
-  {
-    id: "p3",
-    type: "pilot",
-    title: "Пилот: AI для предиктивного обслуживания в энергосекторе",
-    oneLiner: "Связка запроса от энергокомпании с ML-командой на предсказание отказов оборудования",
-    description:
-      "Энергокомпания и МТК запустили совместный пилот для обучения модели на исторических данных отказов турбин. Цель: за 3 месяца добиться точности >92% и ROI >300% на основе предупреждения простоев.",
-    categories: ["ai_agents", "iiot"],
-    industries: ["energy"],
-    tags: ["Predictive Maintenance", "Time Series", "ML Ops"],
-    status: "poc",
-    readinessScore: 70,
-    impactScore: 95,
-    pilotDurationWeeks: 12,
-    budgetRange: { min: 750000, max: 3000000, currency: "RUB" },
-    dataRequirements: ["on_prem", "pdn", "anonymized_only"],
-    assets: { pitchVideoUrl: "https://youtube.com/example" },
-    owner: { name: "Алексей Орлов", role: "Project Manager", email: "alex@energy.ru", public: false },
-    createdAt: "2025-10-20T12:00:00Z",
-    updatedAt: "2026-01-28T09:20:00Z",
-  },
-  {
-    id: "p4",
-    type: "solution",
-    title: "BIM-платформа для согласования строительных проектов",
-    oneLiner: "Облачная коллаборативная платформа для управления строительными данными",
-    description:
-      "Веб-сервис для работы с BIM-моделями в облаке. Позволяет архитекторам, инженерам и подрядчикам работать в одном пространстве, отслеживать коллизии и версионировать изменения. Интеграция с Revit и AutoCAD.",
-    categories: ["buildtech", "design"],
-    industries: ["construction"],
-    tags: ["BIM", "Collaboration", "3D"],
-    status: "published",
-    readinessScore: 85,
-    impactScore: 75,
-    pilotDurationWeeks: 6,
-    budgetRange: { min: 300000, max: 1500000, currency: "RUB" },
-    dataRequirements: ["cloud_ok", "nda"],
-    assets: { websiteUrl: "https://bim-platform.ru" },
-    owner: undefined,
-    createdAt: "2025-12-01T14:30:00Z",
-    updatedAt: "2026-01-22T11:00:00Z",
-  },
-  {
-    id: "p5",
-    type: "request",
-    title: "Автоматизация логистики агросырья с использованием blockchain",
-    oneLiner: "Запрос на решение для прозрачного учета движения сельхозпродукции",
-    description:
-      "Сельскохозяйственный кооператив ищет систему для отслеживания сырья от фермы до перерабатывающего комплекса с использованием blockchain для неизменяемости записей. Целевой KPI: снизить потери за счёт прозрачности и сокращить время доставки на 20%.",
-    categories: ["automation", "cyber"],
-    industries: ["agro", "services"],
-    tags: ["Blockchain", "Supply Chain", "IoT"],
-    status: "published",
-    readinessScore: 60,
-    impactScore: 70,
-    pilotDurationWeeks: 16,
-    budgetRange: { min: 1500000, max: 4000000, currency: "RUB" },
-    dataRequirements: ["on_prem", "pdn"],
-    assets: {},
-    owner: { name: "Сергей Волков", role: "Operations Director", email: "sergey@agro.ru", public: true },
-    createdAt: "2026-01-05T09:00:00Z",
-    updatedAt: "2026-01-28T10:15:00Z",
-  },
-  {
-    id: "p6",
-    type: "solution",
-    title: "Система управления IP и патентами для корпораций",
-    oneLiner: "SaaS-платформа для централизованного управления интеллектуальной собственностью",
-    description:
-      "Готовое решение для компаний с портфелем патентов и торговых марок. Автоматизирует ведение сроков продления, отслеживание конкурентов, экспорт отчётов для инвесторов. Используется 50+ корпорациями в России и СНГ.",
-    categories: ["ip_nma", "design"],
-    industries: ["services"],
-    tags: ["IP Management", "SaaS", "Enterprise"],
-    status: "live",
-    readinessScore: 95,
-    impactScore: 65,
-    pilotDurationWeeks: 4,
-    budgetRange: { min: 100000, max: 500000, currency: "RUB" },
-    dataRequirements: ["cloud_ok"],
-    assets: { websiteUrl: "https://ip-platform.com" },
-    owner: undefined,
-    createdAt: "2025-09-15T15:45:00Z",
-    updatedAt: "2026-01-20T13:00:00Z",
-  },
-];
+import type { ProjectCard } from './types';
+import projectsData from './projects-data.json';
+
+// Экспортируем типизированные mock данные
+export const MOCK_PROJECTS: ProjectCard[] = projectsData as ProjectCard[];
+
+// Пример функции для фильтрации или поиска
+export const getProjectsByType = (type: ProjectType): ProjectCard[] => {
+  return MOCK_PROJECTS.filter(project => project.type === type);
+};
+
+export const getProjectById = (id: string): ProjectCard | undefined => {
+  return MOCK_PROJECTS.find(project => project.id === id);
+};
 
 // ========== СЛОВАРИ ==========
 
@@ -449,7 +340,7 @@ export default function PilotProjectsPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.2em] text-sky-400">
-              Форум • Экосистема пилотов •  
+              Форум • Экосистема пилотов
             </p>
             <h1 className="text-3xl font-bold tracking-tight text-slate-50 md:text-4xl lg:text-5xl">
               Пилотные проекты: от запроса к внедрению
