@@ -141,6 +141,58 @@
     background-size: 24px 24px;
   }
 
+  .dot-light {
+  --dot-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .dot-dark {
+  --dot-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  /* ===== DOT BACKGROUND LAYER (точки видны всегда, контент поверх) ===== */
+.dot-surface {
+  position: relative;
+  isolation: isolate;
+  background: hsl(var(--background)); /* базовый фон, если у тебя задан */
+}
+
+/* слой точек */
+.dot-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
+  background-image: radial-gradient(
+    rgba(148, 163, 184, 0.14) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+
+  /* лёгкая виньетка, чтобы было “дороже” */
+  -webkit-mask-image: radial-gradient(
+    circle at 20% 0%,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0.05)
+  );
+  mask-image: radial-gradient(
+    circle at 20% 0%,
+    rgba(0, 0, 0, 0.85),
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0.05)
+  );
+}
+
+/* чуть более “холодные” точки на тёмном фоне */
+.dot-surface.dot-dark::before {
+  background-image: radial-gradient(
+    rgba(56, 189, 248, 0.12) 1px,
+    transparent 1px
+  );
+}
+
   /* Animations */
   @keyframes fadeIn {
     from {
@@ -185,6 +237,25 @@
       transform: translateX(4px);
     }
   }
+
+  /* Анимация shimmer для liquid эффекта */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s infinite linear;
+}
+
+/* Опционально: можно добавить паузу при наведении */
+.group:hover .animate-shimmer {
+  animation-play-state: paused;
+}
 
   .cta-button-animated {
     animation: pulse-glow 2s ease-in-out infinite;

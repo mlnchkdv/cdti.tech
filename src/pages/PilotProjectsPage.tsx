@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-
-// ========== ТИПЫ ==========
+import { Layout } from "@/components/layout/Layout";
 
 export type ProjectType = "request" | "solution" | "pilot";
 
@@ -174,7 +173,7 @@ const parseQueryParam = (name: string): string | undefined => {
   return params.get(name) ?? undefined;
 };
 
-// ========== ОСНОВНОЙ КОМПОНЕНТ ==========
+
 
 export default function PilotProjectsPage() {
   const [search, setSearch] = useState("");
@@ -333,11 +332,13 @@ export default function PilotProjectsPage() {
   }, []);
 
   return (
+    <Layout>
+    <div className="dot-background dot-dark min-h-screen">
     <div className="min-h-screen bg-slate-950 text-slate-50">
       {/* Hero */}
-      <section className="border-b border-slate-800 bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900">
+      <section className="border-b border-slate-800 bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900 pt-16">
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <div className="space-y-4">
+          <div className="space-y-7">
             <p className="text-xs uppercase tracking-[0.2em] text-sky-400">
               Форум • Экосистема пилотов
             </p>
@@ -345,7 +346,7 @@ export default function PilotProjectsPage() {
               Пилотные проекты: от запроса к внедрению
             </h1>
             <p className="max-w-2xl text-sm text-slate-300 md:text-base">
-              Выберите запрос или решение. Запросите встречу. Запустите пилот — с прозрачным треком статусов на 6–12 месяцев после форума.
+              Выберите запрос или решение. Запросите встречу. Запустите пилот — с&nbsp;прозрачным треком статусов на 6–12 месяцев после форума.
             </p>
             <div className="flex flex-wrap gap-3 pt-4">
               <button
@@ -497,46 +498,127 @@ export default function PilotProjectsPage() {
           </div>
         )}
 
-        {/* How it works */}
-        <section className="mt-12 rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-          <h2 className="text-lg font-semibold">Как устроен пилот</h2>
-          <ol className="mt-6 grid gap-3 md:grid-cols-5">
-            {[
-              "Запрос: формулируем проблему и KPI",
-              "Скоринг: приоритизация команд",
-              "ТЗ: совместное описание",
-              "PoC: ограниченный пилот",
-              "Внедрение: интеграция",
-            ].map((text, i) => (
-              <li
-                key={i}
-                className="flex flex-col gap-2 rounded-lg border border-slate-800 bg-slate-950/60 p-3"
+{/* How it works - Liquid Glass цифры с анимацией */}
+<section className="mt-24 rounded-2xl border border-slate-800 bg-slate-900/60 p-8">
+  <div className="mb-8">
+    <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-400 to-emerald-400 bg-clip-text text-transparent">
+      Как устроен пилот
+    </h2>
+    <p className="mt-2 text-sm text-slate-400">От идеи до внедрения — 5 ключевых этапов</p>
+  </div>
+  
+  <div className="space-y-8">
+    {[
+      { 
+        number: "01", 
+        title: "Формулировка", 
+        subtitle: "Определяем проблему и целевые KPI",
+        description: "Совместно с заказчиком описываем бизнес-задачу и метрики успеха"
+      },
+      { 
+        number: "02", 
+        title: "Скоринг", 
+        subtitle: "Выбор команды",
+        description: "Анализ компетенций и&nbsp;выбор оптимальной команды под задачу"
+      },
+      { 
+        number: "03", 
+        title: "Техническое задание", 
+        subtitle: "Детальное описание",
+        description: "Совместная разработка требований и&nbsp;архитектуры решения"
+      },
+      { 
+        number: "04", 
+        title: "PoC", 
+        subtitle: "Ограниченный пилот",
+        description: "Тестирование гипотезы на реальных данных в&nbsp;контролируемой среде"
+      },
+      { 
+        number: "05", 
+        title: "Внедрение", 
+        subtitle: "Полная интеграция",
+        description: "Масштабирование решения и&nbsp;интеграция в&nbsp;бизнес-процессы"
+      }
+    ].map((item, i) => (
+      <div 
+        key={i} 
+        className="group flex items-start gap-10 rounded-xl border border-slate-800 bg-slate-950/40 p-6 transition-all hover:border-sky-500/30 hover:bg-slate-900/60"
+      >
+        {/* Liquid Glass цифра с анимацией */}
+        <div className="flex-shrink-0 relative">
+          <div className="relative">
+            {/* Основа для объема */}
+            <div className="text-6xl md:text-7xl font-black">
+              <span className="text-slate-900/70">{item.number}</span>
+            </div>
+            
+            {/* Основной жидкий слой с анимацией */}
+            <div className="absolute top-0 left-0 text-6xl md:text-7xl font-black">
+              <span 
+                className="text-transparent bg-clip-text animate-shimmer"
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, #7dd3fc 0%, #22d3ee 20%, #2dd4bf 40%, #34d399 60%, #4ade80 80%, #7dd3fc 100%)',
+                  backgroundSize: '200% 100%',
+                  filter: 'drop-shadow(0 0 12px rgba(125, 211, 252, 0.4))'
+                }}
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-sky-500/10 text-xs font-bold text-sky-400">
-                  {i + 1}
-                </div>
-                <p className="text-xs text-slate-200">{text}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
+                {item.number}
+              </span>
+            </div>
+            
+            {/* Блики */}
+            <div className="absolute top-0 left-0 text-6xl md:text-7xl font-black opacity-30">
+              <span 
+                className="text-transparent bg-clip-text"
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%)',
+                  backgroundSize: '50% 100%',
+                  backgroundPosition: '-100% 0'
+                }}
+              >
+                {item.number}
+              </span>
+            </div>
+          </div>
+          
+          {/* Декоративная линия под цифрой */}
+          <div className="mt-2 h-1 w-16 bg-gradient-to-r from-sky-500 to-transparent rounded-full group-hover:w-24 transition-all duration-300"></div>
+        </div>
+        
+        {/* Контент справа */}
+        <div className="flex-1 pl-6">
+          <div className="flex items-center gap-3">
+            <h3 className="text-xl font-bold text-slate-100">{item.title}</h3>
+            <span className="text-xs font-medium text-sky-400 bg-sky-500/10 px-3 py-1.5 rounded-full">
+              {item.subtitle}
+            </span>
+          </div>
+          <p className="mt-3 text-sm text-slate-300 leading-relaxed">
+            {item.description}
+          </p>
+          {/* Декоративная линия при наведении */}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
         {/* FAQ */}
         <section className="mt-8 grid gap-6 md:grid-cols-2">
           <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
             <h3 className="text-base font-semibold">Частые вопросы</h3>
-            <div className="mt-4 space-y-2 text-sm">
+            <div className="mt-4 space-y-4 text-sm">
               <details className="rounded border border-slate-800 p-2">
                 <summary className="cursor-pointer font-medium">Кто может подать проект?</summary>
-                <p className="mt-2 text-xs text-slate-300">Команды, МТК, вузы, стартапы, готовые к B2B.</p>
+                <p className="mt-5 text-xs text-slate-300">Команды, МТК, вузы, стартапы, готовые к B2B.</p>
               </details>
               <details className="rounded border border-slate-800 p-2">
                 <summary className="cursor-pointer font-medium">Какие форматы пилота?</summary>
-                <p className="mt-2 text-xs text-slate-300">PoC, пилот на участке, поэтапное внедрение.</p>
+                <p className="mt-4 text-xs text-slate-300">PoC, пилот на участке, поэтапное внедрение.</p>
               </details>
               <details className="rounded border border-slate-800 p-2">
                 <summary className="cursor-pointer font-medium">Нужен ли NDA?</summary>
-                <p className="mt-2 text-xs text-slate-300">Да, для чувствительных данных с NDA и on-prem.</p>
+                <p className="mt-4 text-xs text-slate-300">Да, для чувствительных данных с NDA и on-prem.</p>
               </details>
             </div>
           </div>
@@ -578,6 +660,8 @@ export default function PilotProjectsPage() {
         />
       )}
     </div>
+    </div>
+    </Layout>
   );
 }
 
@@ -639,29 +723,78 @@ function ProjectCard({
         ))}
       </div>
 
-      <div className="mt-3 grid grid-cols-2 gap-2 text-[11px] text-slate-300">
+      <div className="mt-11 grid grid-cols-2 gap-2 text-[11px] text-slate-300">
         <div>
           <div className="text-slate-500">Готовность</div>
           <div className="font-semibold">{project.readinessScore}/100</div>
         </div>
         <div>
+          <div className="flex flex-col items-end text-right"> {/* Добавили flex-col и items-end */}
           <div className="text-slate-500">Эффект</div>
           <div className="font-semibold">{project.impactScore}/100</div>
         </div>
       </div>
-
-      <div className="mt-4 flex items-center justify-between gap-2">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onAction(primaryAction);
-          }}
-          className="rounded-full bg-sky-500 px-3 py-1 text-xs font-medium text-slate-950 transition hover:bg-sky-400"
-        >
-          {primaryLabel}
-        </button>
-        <span className="text-xs text-slate-500 group-hover:text-sky-300">Подробнее →</span>
       </div>
+
+      <div className="mt-6 flex items-center justify-between gap-2">
+  <button
+    onClick={(e) => {
+      e.stopPropagation();
+      onAction(primaryAction);
+    }}
+    className="relative rounded-full px-4 py-2 text-xs font-bold overflow-hidden group/btn transition-all duration-300 border border-slate-700 hover:border-sky-500/70"
+  >
+    {/* Glass фон с более четкой границей */}
+    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900 rounded-full"></div>
+    
+ {/* Жидкий градиент как у цифр */}
+<div 
+  className="absolute inset-0 opacity-30 group-hover/btn:opacity-70 transition-opacity duration-500 rounded-full"
+  style={{
+    backgroundImage: 'linear-gradient(135deg, rgba(125, 211, 252, 0.4) 0%, rgba(34, 211, 238, 0.3) 25%, rgba(45, 212, 191, 0.3) 50%, rgba(52, 211, 153, 0.4) 75%, rgba(74, 222, 128, 0.5) 100%)'
+  }}
+></div>
+
+{/* Shimmer эффект ТОЛЬКО при наведении на кнопку */}
+<div 
+  className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"
+  style={{
+    background: 'linear-gradient(90deg, transparent 0%, rgba(125, 211, 252, 0.4) 50%, transparent 100%)',
+    backgroundSize: '200% 100%',
+    animation: 'shimmer 1.5s infinite linear'
+  }}
+></div>
+
+{/* Блик сверху как у цифр */}
+<div 
+  className="absolute top-0 left-0 w-full h-1/2 opacity-25 group-hover/btn:opacity-50 transition-opacity duration-300 rounded-t-full"
+  style={{
+    backgroundImage: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%)',
+    mixBlendMode: 'overlay'
+  }}
+></div>
+
+{/* Эффект внутреннего свечения как у цифр */}
+<div 
+  className="absolute inset-0 opacity-0 group-hover/btn:opacity-30 transition-opacity duration-500 rounded-full"
+  style={{
+    backgroundImage: 'radial-gradient(circle at center, rgba(125, 211, 252, 0.5) 0%, transparent 70%)',
+    filter: 'blur(8px)'
+  }}
+></div>
+    
+    {/* Текст кнопки */}
+    <span className="relative z-10 text-white font-bold drop-shadow-md">
+      {primaryLabel}
+    </span>
+    
+    {/* Эффект нажатия */}
+    <div className="absolute inset-0 bg-white/0 group-hover/btn:bg-white/5 group-active/btn:bg-white/10 transition-colors rounded-full"></div>
+  </button>
+  
+  {/* "Подробнее" - реагирует на наведение только на себя */}
+  <span className="text-xs text-slate-500 hover:text-sky-300 transition-colors cursor-pointer">Подробнее →</span>
+</div>
     </button>
   );
 }
