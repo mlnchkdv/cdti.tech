@@ -48,7 +48,7 @@ export const Header = ({ transparent = false }: HeaderProps) => {
               ЦИФРОВЫХ ТЕХНОЛОГИЙ И ИННОВАЦИЙ
             </span>
             <span className="text-[10px] text-muted-foreground tracking-tight mt-0.5">
-              ТПП САРАТОВСКАЯ ОБЛАСТЬ
+              ТПП САРАТОВСКОЙ ОБЛАСТИ
             </span>
           </div>
         </Link>
