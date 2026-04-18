@@ -268,6 +268,3 @@ const { stats, liked, incrementView, toggleLike, incrementShare } = useNewsStats
 - Десктопов (> 1024px)
 
 Используются адаптивные классы Tailwind: `sm:`, `md:`, `lg:`, `xl:`
-
-
-Это правки для Никиты.
